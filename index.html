@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DefaultCreds - Base de Credenciales por Defecto</title>
+    <meta name="description"
+        content="Base de datos actualizada de credenciales por defecto (default credentials) para routers, dispositivos IoT, servidores y más. Herramienta esencial para Red Team y Blue Team." />
+    <meta name="keywords"
+        content="default credentials, credenciales por defecto, contraseñas de fábrica, ciberseguridad, red team, blue team, iot security, passwords" />
+    <meta name="author" content="DefaultCreds Project" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://defaultcreds.com/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://defaultcreds.com/" />
+    <meta property="og:title" content="DefaultCreds - Base de Credenciales por Defecto" />
+    <meta property="og:description"
+        content="Busca y encuentra credenciales de fábrica vulnerables. Protege tu infraestructura identificando accesos por defecto." />
+    <meta property="og:image" content="https://defaultcreds.com/assets/img/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://defaultcreds.com/" />
+    <meta property="twitter:title" content="DefaultCreds - Base de Credenciales por Defecto" />
+    <meta property="twitter:description"
+        content="Busca y encuentra credenciales de fábrica vulnerables. Protege tu infraestructura identificando accesos por defecto." />
+    <meta property="twitter:image" content="https://defaultcreds.com/assets/img/og-image.jpg" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "DefaultCreds",
+      "url": "https://defaultcreds.com/",
+      "description": "Base de datos de credenciales por defecto para profesionales de ciberseguridad.",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <!-- CSP -->
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://pagead2.googlesyndication.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    connect-src 'self' https://*.firebaseio.com wss://*.firebaseio.com https://www.googleapis.com https://identitytoolkit.googleapis.com https://www.gstatic.com https://firestore.googleapis.com https://pagead2.googlesyndication.com;
+    img-src 'self' data: https://www.google.com;
+    frame-src 'self' https://*.firebaseapp.com;
+    ">
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
+
+    <!-- Google Fonts - Material Symbols -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3375516634263180"
+        crossorigin="anonymous"></script>
+</head>
+
+<body id="page-body"
+    class="bg-dark-900 text-gray-100 min-h-screen flex flex-col relative overflow-x-hidden selection:bg-primary/30 selection:text-white">
+
+    <!-- Background Effects -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-30 animate-pulse">
+        </div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl opacity-30 animate-pulse"
+            style="animation-delay: 2s;"></div>
+    </div>
+
+    <!-- Header (Loaded dynamically) -->
+
+    <!-- Main -->
+    <main aria-label="Contenido principal"
+        class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-20 relative z-10">
+
+        <!-- Hero Section -->
+        <section class="mb-16 text-center max-w-3xl mx-auto">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-white/10 text-xs font-medium text-accent mb-6 animate-fade-in-up">
+                <span class="relative flex h-2 w-2">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                </span>
+                Base de Datos Actualizada
+            </div>
+            <h2 class="text-4xl md:text-6xl font-bold mb-6 tracking-tight animate-fade-in-up"
+                style="animation-delay: 0.1s;">
+                <span class="text-white">Credenciales por</span> <br />
+                <span class="text-gradient">Defecto & Vulnerables</span>
+            </h2>
+            <p class="text-lg text-secondary mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+                Accede a miles de credenciales de fábrica de dispositivos IoT, routers y servidores.
+                Una herramienta esencial para <span class="text-white font-medium">Red Teams</span> y <span
+                    class="text-white font-medium">Blue Teams</span>.
+            </p>
+        </section>
+
+        <!-- Search & Filters -->
+        <section class="mb-12 animate-fade-in-up" style="animation-delay: 0.3s;">
+            <div class="glass p-2 rounded-2xl flex flex-col md:flex-row gap-4 shadow-2xl shadow-black/50">
+                <div class="relative w-full md:w-48">
+                    <select id="riskFilter"
+                        class="w-full bg-dark-800 text-white border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 appearance-none cursor-pointer hover:bg-dark-700 transition-colors">
+                        <option value="">Riesgo: Todos</option>
+                        <option value="CRÍTICO">Crítico</option>
+                        <option value="ALTO">Alto</option>
+                        <option value="MEDIO">Medio</option>
+                    </select>
+                    <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-secondary">
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+                    </div>
+                </div>
+                <div class="flex-1 relative">
+                    <span
+                        class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary">search</span>
+                    <input id="searchInput" type="text" placeholder="Buscar por fabricante, modelo, servicio..."
+                        class="w-full bg-dark-800 text-white border border-white/10 rounded-xl pl-12 pr-4 py-3 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 placeholder-gray-500 hover:bg-dark-700 transition-colors" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Results -->
+        <section class="animate-fade-in-up" style="animation-delay: 0.4s;">
+            <!-- Desktop Table -->
+            <div
+                class="hidden md:block overflow-hidden rounded-2xl border border-white/5 bg-surface/30 backdrop-blur-sm">
+                <table class="w-full text-left border-collapse">
+                    <thead
+                        class="bg-dark-800/80 text-secondary text-xs uppercase tracking-wider font-semibold border-b border-white/5">
+                        <tr>
+                            <th class="px-6 py-4">Fabricante</th>
+                            <th class="px-6 py-4">Modelo</th>
+                            <th class="px-6 py-4">Servicio</th>
+                            <th class="px-6 py-4">Puerto</th>
+                            <th class="px-6 py-4">Riesgo</th>
+                            <th class="px-6 py-4 text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBodyTable" class="divide-y divide-white/5 text-sm">
+                        <!-- JS populated -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Mobile Cards -->
+            <div id="resultsBodyCards" class="md:hidden space-y-4">
+                <!-- JS populated -->
+            </div>
+        </section>
+
+        <!-- Pagination -->
+        <section class="pagination-controls flex justify-center items-center gap-4 mt-12 hidden animate-fade-in-up">
+            <button
+                class="prev-button p-2 rounded-full bg-dark-800 border border-white/10 text-secondary hover:text-white hover:border-primary/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <span
+                class="page-indicator text-sm font-medium text-secondary bg-dark-800 px-4 py-1 rounded-full border border-white/5"></span>
+            <button
+                class="next-button p-2 rounded-full bg-dark-800 border border-white/10 text-secondary hover:text-white hover:border-primary/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </section>
+
+        <div class="text-center mt-6">
+            <button
+                class="show-all-button text-xs text-secondary hover:text-primary transition-colors underline decoration-dotted">Mostrar
+                todos los resultados</button>
+            <button
+                class="show-paginated-button hidden text-xs text-secondary hover:text-primary transition-colors underline decoration-dotted">Volver
+                a paginación</button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="page-footer" class="border-t border-white/5 bg-dark-900/50 backdrop-blur-sm py-8 mt-auto relative z-10">
+        <div
+            class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-secondary">
+            <p>&copy; <span id="copyright-year">2025</span> DefaultCreds Project</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-white transition-colors">Privacidad</a>
+                <a href="#" class="hover:text-white transition-colors">Términos</a>
+                <a href="https://github.com/tu-repo" class="hover:text-white transition-colors">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div id="copyToast"
+        class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-dark-800 border border-primary/30 text-white px-6 py-3 rounded-full shadow-neon transform transition-all duration-300 translate-y-20 opacity-0 z-50 flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+        <span class="font-medium">Copiado al portapapeles</span>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" id="back-to-top"
+        class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-neon transform translate-y-20 opacity-0 transition-all duration-300 hover:scale-110 z-40">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </a>
+
+    <!-- Scripts -->
+    <script type="module" src="assets/js/app.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+</body>
+
+</html>

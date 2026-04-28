@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guía de Uso - DefaultCreds</title>
+    <meta name="description"
+        content="Aprende a utilizar DefaultCreds para auditorías de seguridad. Guía completa para Red Teams y Blue Teams sobre identificación y remediación de credenciales por defecto." />
+    <meta name="keywords"
+        content="guía ciberseguridad, tutorial default creds, hardening, auditoría seguridad, pentesting" />
+    <meta name="author" content="DefaultCreds Project" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://defaultcreds.com/guia.html" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://defaultcreds.com/guia.html" />
+    <meta property="og:title" content="Guía de Uso - DefaultCreds" />
+    <meta property="og:description"
+        content="Domina el uso de DefaultCreds para auditorías de seguridad y hardening de infraestructuras." />
+    <meta property="og:image" content="https://defaultcreds.com/assets/img/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://defaultcreds.com/guia.html" />
+    <meta property="twitter:title" content="Guía de Uso - DefaultCreds" />
+    <meta property="twitter:description"
+        content="Domina el uso de DefaultCreds para auditorías de seguridad y hardening de infraestructuras." />
+    <meta property="twitter:image" content="https://defaultcreds.com/assets/img/og-image.jpg" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Guía de Uso de DefaultCreds",
+      "description": "Manual para profesionales de seguridad sobre cómo utilizar la base de datos de credenciales por defecto.",
+      "author": {
+        "@type": "Organization",
+        "name": "DefaultCreds Project"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "DefaultCreds Project",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://defaultcreds.com/assets/img/logo.svg"
+        }
+      }
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
+
+    <!-- Google Fonts - Material Symbols -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3375516634263180"
+        crossorigin="anonymous"></script>
+</head>
+
+<body id="page-body"
+    class="bg-dark-900 text-gray-100 min-h-screen flex flex-col relative overflow-x-hidden selection:bg-primary/30 selection:text-white">
+
+    <!-- Background Effects -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-20"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-20"></div>
+    </div>
+
+    <!-- Header (Loaded dynamically) -->
+
+    <!-- Main Content -->
+    <main aria-label="Contenido principal"
+        class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-20 relative z-10">
+
+        <section class="mb-16 text-center max-w-4xl mx-auto animate-fade-in-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+                Guía de <span class="text-gradient">Inteligencia</span>
+            </h2>
+            <p class="text-lg text-secondary max-w-2xl mx-auto">
+                Domina el uso de DefaultCreds para auditorías de seguridad y hardening de infraestructuras.
+            </p>
+        </section>
+
+        <div class="space-y-16">
+            <!-- Section: What and Why -->
+            <section class="glass p-8 md:p-12 rounded-3xl animate-fade-in-up" style="animation-delay: 0.1s;">
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold text-white mb-4">¿Qué es DefaultCreds?</h3>
+                        <p class="text-gray-300 leading-relaxed mb-4">
+                            Es una base de datos de inteligencia que centraliza las <strong>credenciales de
+                                fábrica</strong> de miles de dispositivos. Olvidar cambiar estas credenciales es una
+                            vulnerabilidad crítica (CWE-255).
+                        </p>
+                        <p class="text-gray-300 leading-relaxed">
+                            Esta herramienta permite a los profesionales de seguridad identificar rápidamente estos
+                            vectores de ataque para cerrarlos antes de que sean explotados.
+                        </p>
+                    </div>
+                    <div class="w-full md:w-1/3 flex justify-center">
+                        <div
+                            class="w-32 h-32 rounded-full bg-gradient-to-tr from-primary to-accent flex items-center justify-center shadow-neon animate-pulse">
+                            <span class="material-symbols-outlined text-6xl text-white">database</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: How to Use -->
+            <section class="animate-fade-in-up" style="animation-delay: 0.2s;">
+                <h3 class="text-2xl font-bold text-white mb-8 text-center">Flujo de Trabajo</h3>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Step 1 -->
+                    <div class="glass-card p-6 rounded-2xl text-center group hover:-translate-y-2 transition-transform">
+                        <div
+                            class="w-12 h-12 mx-auto bg-dark-800 rounded-xl flex items-center justify-center mb-4 border border-white/10 group-hover:border-primary/50 transition-colors">
+                            <span class="material-symbols-outlined text-primary">filter_alt</span>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">1. Filtrar</h4>
+                        <p class="text-sm text-secondary">Selecciona el nivel de riesgo (Crítico, Alto, Medio) para
+                            priorizar objetivos.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="glass-card p-6 rounded-2xl text-center group hover:-translate-y-2 transition-transform">
+                        <div
+                            class="w-12 h-12 mx-auto bg-dark-800 rounded-xl flex items-center justify-center mb-4 border border-white/10 group-hover:border-primary/50 transition-colors">
+                            <span class="material-symbols-outlined text-primary">search</span>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">2. Buscar</h4>
+                        <p class="text-sm text-secondary">Localiza dispositivos específicos por fabricante, modelo o
+                            puerto.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="glass-card p-6 rounded-2xl text-center group hover:-translate-y-2 transition-transform">
+                        <div
+                            class="w-12 h-12 mx-auto bg-dark-800 rounded-xl flex items-center justify-center mb-4 border border-white/10 group-hover:border-primary/50 transition-colors">
+                            <span class="material-symbols-outlined text-primary">visibility</span>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">3. Analizar</h4>
+                        <p class="text-sm text-secondary">Revisa los detalles técnicos y las guías de remediación
+                            asociadas.</p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="glass-card p-6 rounded-2xl text-center group hover:-translate-y-2 transition-transform">
+                        <div
+                            class="w-12 h-12 mx-auto bg-dark-800 rounded-xl flex items-center justify-center mb-4 border border-white/10 group-hover:border-primary/50 transition-colors">
+                            <span class="material-symbols-outlined text-primary">shield_lock</span>
+                        </div>
+                        <h4 class="font-bold text-white mb-2">4. Remediación</h4>
+                        <p class="text-sm text-secondary">Aplica los cambios necesarios para asegurar la
+                            infraestructura.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Red vs Blue -->
+            <section class="grid md:grid-cols-2 gap-8 animate-fade-in-up" style="animation-delay: 0.3s;">
+                <!-- Red Team -->
+                <div class="glass-card p-8 rounded-3xl border-l-4 border-l-red-500/50">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 rounded-lg bg-red-500/10 text-red-400">
+                            <span class="material-symbols-outlined text-3xl">swords</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Red Team</h3>
+                    </div>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex gap-3 items-start">
+                            <span class="material-symbols-outlined text-red-400 text-sm mt-1">check_circle</span>
+                            <span><strong>Reconocimiento:</strong> Identificación rápida de servicios expuestos con
+                                credenciales default.</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span class="material-symbols-outlined text-red-400 text-sm mt-1">check_circle</span>
+                            <span><strong>Movimiento Lateral:</strong> Uso de credenciales reutilizadas para acceder a
+                                otros segmentos.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Blue Team -->
+                <div class="glass-card p-8 rounded-3xl border-l-4 border-l-primary/50">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 rounded-lg bg-primary/10 text-primary">
+                            <span class="material-symbols-outlined text-3xl">shield</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Blue Team</h3>
+                    </div>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex gap-3 items-start">
+                            <span class="material-symbols-outlined text-primary text-sm mt-1">check_circle</span>
+                            <span><strong>Auditoría:</strong> Escaneo proactivo para detectar incumplimientos de
+                                políticas de contraseñas.</span>
+                        </li>
+                        <li class="flex gap-3 items-start">
+                            <span class="material-symbols-outlined text-primary text-sm mt-1">check_circle</span>
+                            <span><strong>Hardening:</strong> Aseguramiento de dispositivos nuevos antes de su
+                                despliegue en producción.</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="page-footer" class="border-t border-white/5 bg-dark-900/50 backdrop-blur-sm py-8 mt-auto relative z-10">
+        <div
+            class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-secondary">
+            <p>&copy; <span id="copyright-year">2025</span> DefaultCreds Project</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" id="back-to-top"
+        class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-neon transform translate-y-20 opacity-0 transition-all duration-300 hover:scale-110 z-40">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </a>
+
+    <!-- Scripts -->
+    <script type="module" src="assets/js/main.js"></script>
+
+</body>
+
+</html>
