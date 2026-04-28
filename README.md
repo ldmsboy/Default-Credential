@@ -26,5 +26,5 @@ In this version, the project took a massive leap forward. It was fully refactore
 *   **Professional Development:** Grants access to modern CLI behaviors (`npm run dev` for seamless hot-reloading loops, `npm run build` yielding a fully-optimized ultra-minified ready-to-deploy `dist/` catalog).
 
 ---
-*Para más contexto y la guía general, por favor revisa el [README Principal](../README.md).*
-*For more context and the main guide refer to the [Root README](../README.md).*
+*Para más contexto y la guía general, por favor revisa el [README Principal]([../README.md](https://github.com/ldmsboy/Default-Credential/blob/main/README.md)).*
+*For more context and the main guide refer to the [Root README](https://github.com/ldmsboy/Default-Credential/blob/main/README.md).*
