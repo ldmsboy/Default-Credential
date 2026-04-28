@@ -15,13 +15,13 @@ document.head.appendChild(firestoreScript);
 firestoreScript.onload = () => {
   // Configuración de Firebase (usa tu config real)
   const firebaseConfig = {
-    apiKey: "AIzaSyCN5OVlp09iXAmUlUfFjR35FkAhAvEXook",
-    authDomain: "defaultcreds-82e6f.firebaseapp.com",
-    projectId: "defaultcreds-82e6f",
-    storageBucket: "defaultcreds-82e6f.firebasestorage.app",
-    messagingSenderId: "133454919563",
-    appId: "1:133454919563:web:78bd5632747b4fd077a18e",
-    measurementId: "G-87792D3LTB"
+    apiKey: "TU_API_KEY",
+    authDomain: "TU_AUTH_DOMAIN",
+    projectId: "TU_PROJECT_ID",
+    storageBucket: "TU_STORAGE_BUCKET",
+    messagingSenderId: "TU_MESSAGING_SENDER_ID",
+    appId: "TU_APP_ID",
+    measurementId: "TU_MEASUREMENT_ID"
   };
   if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
