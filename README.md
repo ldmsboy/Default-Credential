@@ -20,5 +20,5 @@ La primera versión de este proyecto, construida puramente con HTML estático, T
 The foundational version of this project, purely built using static HTML, CDN-loaded Tailwind CSS, and Vanilla JavaScript. Everything is powered within a single environment establishing direct links to the Firebase Firestore cloud backend ("Frontend-as-Backend" approach). It supports agile queries, CVSS Risk Level filtering, and automated clipboard-copying mechanisms.
 
 ---
-*Para más contexto y la guía de configuración general, por favor revisa el [README Principal](../README.md).*
-*For more context and the main guide refer to the [Root README](../README.md).*
+*Para más contexto y la guía de configuración general, por favor revisa el [README Principal](https://github.com/ldmsboy/Default-Credential/blob/main/README.md).*
+*For more context and the main guide refer to the [Root README](https://github.com/ldmsboy/Default-Credential/blob/main/README.md).*
