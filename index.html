@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DefaultCreds - Base de Credenciales por Defecto</title>
+    <meta name="description" content="Base de credenciales por defecto para dispositivos y aplicaciones. Seguridad ofensiva y defensiva." />
+    <link rel="icon" href="assets/img/favicon.ico" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cybergreen: '#00FFC0',
+                        darkbg: '#1A1A1A',
+                        blueblock: '#2C2C34',
+                    },
+                },
+            },
+        };
+</script>
+    <!-- Script de carga masiva temporal (eliminar después de usar) -->
+    <script src="bulk-insert.js"></script>
+    <style>
+        html { background: #1A1A1A; }
+        .blue-team-block { background: #2C2C34; border-left: 4px solid #00FFC0; }
+        .whitespace-pre-line { white-space: pre-line; }
+        .copy-toast { position: fixed; top: 1.5rem; right: 1.5rem; z-index: 50; background: #222; color: #00FFC0; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: bold; opacity: 0.95; box-shadow: 0 2px 8px #0008; }
+    </style>
+</head>
+<body class="bg-darkbg text-gray-100 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header aria-label="Encabezado" class="sticky top-0 z-20 bg-darkbg border-b border-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+            <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-cybergreen">DefaultCreds</h1>
+            <div class="text-xs text-gray-400 bg-gray-900 rounded px-2 py-1 ml-4" aria-label="Anuncio/Patrocinio">[Espacio para patrocinio]</div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main aria-label="Contenido principal" class="flex-1 w-full max-w-7xl mx-auto px-4 py-6">
+        <section class="mb-6">
+            <h2 class="text-xl font-bold mb-2 text-cybergreen">Base de Credenciales por Defecto</h2>
+            <p class="text-gray-300 mb-2">Encuentra credenciales por defecto de dispositivos y servicios vulnerables. Filtra por riesgo o busca por fabricante/modelo.</p>
+        </section>
+
+        <!-- Filtros -->
+        <section class="flex flex-col md:flex-row md:items-end gap-4 mb-6">
+            <div>
+                <label for="riskFilter" class="block text-sm font-medium text-gray-300 mb-1">Nivel de Riesgo CVSS</label>
+                <select id="riskFilter" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-gray-100 focus:ring-2 focus:ring-cybergreen" aria-label="Filtrar por nivel de riesgo">
+                    <option value="">Todos</option>
+                    <option value="CRÍTICO">Crítico</option>
+                    <option value="ALTO">Alto</option>
+                    <option value="MEDIO">Medio</option>
+                </select>
+            </div>
+            <div class="flex-1">
+                <label for="searchInput" class="block text-sm font-medium text-gray-300 mb-1">Buscar</label>
+                <input id="searchInput" type="text" placeholder="Fabricante, modelo, servicio..." class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-gray-100 focus:ring-2 focus:ring-cybergreen" aria-label="Buscar por texto" />
+            </div>
+        </section>
+
+        <!-- Tabla de resultados -->
+        <section class="overflow-x-auto rounded-lg shadow-lg bg-gray-900">
+            <table class="min-w-full text-sm text-left">
+                <thead class="bg-gray-800 text-cybergreen">
+                    <tr>
+                        <th class="px-3 py-2">Fabricante</th>
+                        <th class="px-3 py-2">Modelo</th>
+                        <th class="px-3 py-2">Servicio</th>
+                        <th class="px-3 py-2">Puerto</th>
+                        <th class="px-3 py-2">Riesgo</th>
+                        <th class="px-3 py-2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsBody" class="text-gray-200">
+                    <tr><td colspan="6" class="text-center py-8 text-cybergreen">Cargando datos de vulnerabilidades...</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer aria-label="Pie de página" class="bg-darkbg border-t border-gray-800 py-4 text-center text-gray-400 text-sm">
+        <div class="flex flex-col md:flex-row justify-center items-center gap-2">
+            <a href="#" class="hover:underline text-cybergreen font-semibold" aria-label="Admin / Agregar Credencial">Admin / Agregar Credencial</a>
+            <span class="hidden md:inline">|</span>
+            <a href="#" class="hover:underline" aria-label="Contribuir">Contribuir</a>
+        </div>
+        <div class="mt-2">&copy; 2025 DefaultCreds Project</div>
+    </footer>
+
+    <!-- Toast de copiado -->
+    <div id="copyToast" class="copy-toast hidden">¡Copiado!</div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script>
+        // Configuración de Firebase (rellena con tus datos reales)
+        const firebaseConfig = {
+            apiKey: "TU_API_KEY",
+            authDomain: "TU_AUTH_DOMAIN",
+            projectId: "TU_PROJECT_ID",
+            storageBucket: "TU_STORAGE_BUCKET",
+            messagingSenderId: "TU_MESSAGING_SENDER_ID",
+            appId: "TU_APP_ID",
+            measurementId: "TU_MEASUREMENT_ID"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Estado global
+        let allData = [];
+        let filteredData = [];
+
+        // Elementos DOM
+        const resultsBody = document.getElementById('resultsBody');
+        const riskFilter = document.getElementById('riskFilter');
+        const searchInput = document.getElementById('searchInput');
+        const copyToast = document.getElementById('copyToast');
+
+        // Cargar datos de Firestore
+        async function loadData() {
+            resultsBody.innerHTML = `<tr><td colspan='6' class='text-center py-8 text-cybergreen'>Cargando datos de vulnerabilidades...</td></tr>`;
+            try {
+                let query = db.collection('creds_vulnerables').orderBy('Fabricante');
+                const risk = riskFilter.value;
+                if (risk) query = query.where('Nivel_Riesgo_CVSS', '==', risk);
+                const snapshot = await query.get();
+                allData = snapshot.docs.map(doc => {
+                    const d = doc.data();
+                    // Asegura que los campos opcionales existan para evitar errores en la tabla
+                    return {
+                        id: doc.id,
+                        Fabricante: d.Fabricante || '',
+                        Modelo: d.Modelo || '',
+                        Tipo_Servicio: d.Tipo_Servicio || '',
+                        Credencial_Usuario: d.Credencial_Usuario || '',
+                        Credencial_Password: d.Credencial_Password || '',
+                        Puerto_Default: d.Puerto_Default || '',
+                        Nivel_Riesgo_CVSS: d.Nivel_Riesgo_CVSS || '',
+                        Guia_Remediacion: d.Guia_Remediacion || ''
+                    };
+                });
+                filterData();
+            } catch (err) {
+                resultsBody.innerHTML = `<tr><td colspan='6' class='text-center py-8 text-red-400'>Error al conectar con la base de datos.<br>${err.message}</td></tr>`;
+            }
+        }
+
+        // Filtrar y renderizar datos
+        function filterData() {
+            const search = searchInput.value.trim().toLowerCase();
+            const risk = riskFilter.value;
+            filteredData = allData.filter(row => {
+                const matchesRisk = !risk || row.Nivel_Riesgo_CVSS === risk;
+                const matchesText = !search || [row.Fabricante, row.Modelo, row.Tipo_Servicio].some(f => (f||'').toLowerCase().includes(search));
+                return matchesRisk && matchesText;
+            });
+            renderTable();
+        }
+
+        // Renderizar tabla
+        function renderTable() {
+            if (!filteredData.length) {
+                resultsBody.innerHTML = `<tr><td colspan='6' class='text-center py-8 text-cybergreen'>No se encontraron resultados.</td></tr>`;
+                return;
+            }
+            resultsBody.innerHTML = filteredData.map((row, i) => `
+                <tr class="border-b border-gray-800 hover:bg-gray-800 transition-colors">
+                    <td class="px-3 py-2">${row.Fabricante||''}</td>
+                    <td class="px-3 py-2">${row.Modelo||''}</td>
+                    <td class="px-3 py-2">${row.Tipo_Servicio||''}</td>
+                    <td class="px-3 py-2">${row.Puerto_Default||''}</td>
+                    <td class="px-3 py-2"><span class="font-bold ${riskColor(row.Nivel_Riesgo_CVSS)}">${row.Nivel_Riesgo_CVSS||''}</span></td>
+                    <td class="px-3 py-2">
+                        <button onclick="toggleDetail('${row.id}')" class="text-cybergreen hover:underline font-semibold" aria-label="Ver detalle">Detalle</button>
+                    </td>
+                </tr>
+                <tr id="detail-${row.id}" class="hidden">
+                    <td colspan="6" class="p-0">
+                        <div class="blue-team-block m-2 p-4 rounded-lg flex flex-col md:flex-row gap-4">
+                            <div class="flex-1">
+                                <div class="mb-2"><span class="font-bold text-cybergreen">Usuario:</span> <span class="select-all">${row.Credencial_Usuario||''}</span> <button onclick="copyToClipboard('${row.Credencial_Usuario||''}')" class="ml-2 text-xs text-cybergreen underline">Copiar</button></div>
+                                <div class="mb-2"><span class="font-bold text-cybergreen">Password:</span> <span class="select-all">${row.Credencial_Password||''}</span> <button onclick="copyToClipboard('${row.Credencial_Password||''}')" class="ml-2 text-xs text-cybergreen underline">Copiar</button></div>
+                                <!-- Fuente y Verificado eliminados por solicitud -->
+                            </div>
+                            <div class="flex-1 whitespace-pre-line text-gray-200">
+                                <div class="font-bold text-cybergreen mb-1">Guía Blue Team</div>
+                                <div>${row.Guia_Remediacion||''}</div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Color de riesgo
+        function riskColor(risk) {
+            switch(risk) {
+                case 'CRÍTICO': return 'text-red-400';
+                case 'ALTO': return 'text-yellow-400';
+                case 'MEDIO': return 'text-orange-400';
+                default: return 'text-gray-300';
+            }
+        }
+
+        // Mostrar/ocultar detalle
+        window.toggleDetail = function(id) {
+            const row = document.getElementById('detail-' + id);
+            if (!row) return;
+            row.classList.toggle('hidden');
+        }
+
+        // Copiar al portapapeles
+        window.copyToClipboard = function(text) {
+            if (!navigator.clipboard) {
+                // Fallback
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+            } else {
+                navigator.clipboard.writeText(text);
+            }
+            showCopyToast();
+        }
+
+        // Toast de copiado
+        function showCopyToast() {
+            copyToast.classList.remove('hidden');
+            setTimeout(() => copyToast.classList.add('hidden'), 1200);
+        }
+
+        // Eventos
+        riskFilter.addEventListener('change', loadData);
+        searchInput.addEventListener('input', filterData);
+
+        // Inicializar
+        loadData();
+    </script>
+</body>
+</html>
