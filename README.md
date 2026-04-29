@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./cover.png" alt="Default Credentials Cover" width="100%">
+<img src="./cover.png" alt="Default Credentials Cover" width="30%">
 
 # 🛡️ Default Credentials Database / Base de Credenciales por Defecto
 **A modern, fast and offensive security tool for default device credentials.**
